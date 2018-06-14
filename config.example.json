@@ -8,24 +8,15 @@
 		"mpv": "play",
 		"KeePass2": "key"
 	},
-	"strings": {
-		":": "",
-		" - ": " ",
-		" — ": " ",
-		"Rambox ": "",
+	"icon_replace": {
 		"rtv": "reddit",
-		"joshwalls@mila ~": "home",
-		"Front Page": "home",
-		"Zoho Email": "envelope",
-		"messenger": "facebook messenger",
+		"messenger": "facebook-messenger",
 		"~": "home",
 		"ranger": "folder",
 		"vim": "edit",
-		"Start Page": "google",
-		"creepy-": "user secret",
-		"code": "code",
-		"config": "wrench",
-		"sonarr": "tv",
-		"radarr": "film"
-	}
-}
+	},
+	"string_replace": {
+		":": "",
+		" - ": " ",
+		" — ": " ",
+	}}
