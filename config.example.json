@@ -1,0 +1,31 @@
+{
+	"apps": {
+		"Vivaldi-stable": "chrome",
+		"Termite": "terminal",
+		"Atom": "edit",
+		"Rambox": "comments",
+		"feh": "image",
+		"mpv": "play",
+		"KeePass2": "key"
+	},
+	"strings": {
+		":": "",
+		" - ": " ",
+		" — ": " ",
+		"Rambox ": "",
+		"rtv": "reddit",
+		"joshwalls@mila ~": "home",
+		"Front Page": "home",
+		"Zoho Email": "envelope",
+		"messenger": "facebook messenger",
+		"~": "home",
+		"ranger": "folder",
+		"vim": "edit",
+		"Start Page": "google",
+		"creepy-": "user secret",
+		"code": "code",
+		"config": "wrench",
+		"sonarr": "tv",
+		"radarr": "film"
+	}
+}
