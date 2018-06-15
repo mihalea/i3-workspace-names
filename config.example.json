@@ -13,10 +13,11 @@
 		"messenger": "facebook-messenger",
 		"~": "home",
 		"ranger": "folder",
-		"vim": "edit",
+		"vim": "edit"
 	},
 	"string_replace": {
 		":": "",
 		" - ": " ",
-		" — ": " ",
-	}}
+		" — ": " "
+	}
+}
