@@ -28,4 +28,4 @@ Copy default config to home directory. Icons will be downloaded on first run.
 
 Add this to your i3 config:
 
-    exec_always --no-startup-id exec i3-workspace-Names
+    exec_always --no-startup-id exec i3-workspace-names
