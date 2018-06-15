@@ -26,7 +26,4 @@ before_script:
 
 run:
   script:
-  - python setup.py install
-  # an alternative approach is to install and run:
-  - i3-workspace-names
-
+  - pip install .
