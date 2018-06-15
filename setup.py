@@ -7,9 +7,9 @@ with open('README.md') as f:
     long_description = f.read()
 
 setup(name='i3-workspace-names',
-      version='0.1-1',
+      version='0.1.1',
       description='Dynamically rename i3wm workspaces depending on windows',
-      long_description = long_description,
+      long_description=long_description,
       url='https://gitlab.com/flib99/i3-workspace-names',
       author='Josh Walls',
       author_email='me@joshwalls.co.uk',
