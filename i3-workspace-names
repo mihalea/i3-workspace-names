@@ -3,7 +3,7 @@
 import i3ipc
 import re
 import json
-from xdg import XDG_CONFIG_HOME
+from xdg.BaseDirectory import xdg_config_home, xdg_cache_home
 import argparse
 from shutil import copyfile
 import requests
@@ -12,7 +12,7 @@ import requests
 parser = argparse.ArgumentParser(
     description='Dynamically change i3wm workspace names depending on windows')
 parser.add_argument("--copy-config", help="copy sample config to %s" %
-                    XDG_CONFIG_HOME + "/i3/icons.json", action="store_true")
+                    xdg_config_home + "/i3/icons.json", action="store_true")
 parser.add_argument("-u", "--update-icons",
                     help="Update icon list from FontAwesome", action="store_true")
 args = parser.parse_args()
@@ -25,22 +25,13 @@ def get_icons():
         'https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/advanced-options/metadata/icons.json')
     j = json.loads(r.text)
 
-    icons = "icons = {"
+    icons = {}
 
     for i in j:
-        icons += "\"%s\": \"\\u%s\"," % (i, j[i]['unicode'])
+        icons[i] = chr(int(j[i]['unicode'], 16))
 
-    icons += "}"
-
-    with open("icons.py", 'w') as f:
-        f.write(icons)
-
-
-try:
-    from icons import icons
-except ModuleNotFoundError:
-    get_icons()
-    from icons import icons
+    with open(xdg_cache_home + "/fa.json", 'w') as f:
+        f.write(json.dumps(icons))
 
 
 def replace(string):
@@ -77,22 +68,30 @@ def main():
     global apps
     global icon_replace
     global string_replace
+    global icons
 
     if args.copy_config:
-        copyfile("config.example.json", XDG_CONFIG_HOME + "/i3/icons.json")
+        copyfile("config.example.json", xdg_config_home + "/i3/icons.json")
         print("Example config copied to %s" %
-              XDG_CONFIG_HOME + "/i3/icons.json")
-        return
-    try:
-        with open(XDG_CONFIG_HOME + "/i3/icons.json") as j:
-            settings = json.load(j)
-    except IOError:
-        print("Config not found. Use --copy-config to create example config.")
+              xdg_config_home + "/i3/icons.json")
         return
 
     if args.update_icons:
         get_icons()
         print("Done")
+        return
+
+    try:
+        with open(xdg_cache_home + "/fa.json") as j:
+            icons = json.load(j)
+    except IOError:
+        get_icons()
+
+    try:
+        with open(xdg_config_home + "/i3/icons.json") as j:
+            settings = json.load(j)
+    except IOError:
+        print("Config not found. Use --copy-config to create example config.")
         return
 
     apps = settings['apps']
