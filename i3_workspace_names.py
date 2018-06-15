@@ -71,7 +71,11 @@ def main():
     global icons
 
     if args.copy_config:
-        copyfile("config.example.json", xdg_config_home + "/i3/icons.json")
+        try:
+            copyfile("config.example.json", xdg_config_home + "/i3/icons.json")
+        except FileNotFoundError:
+            copyfile("/usr/share/config.example.json", xdg_config_home + "/i3/icons.json")
+
         print("Example config copied to %s" %
               xdg_config_home + "/i3/icons.json")
         return
