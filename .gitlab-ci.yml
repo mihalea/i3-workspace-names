@@ -16,7 +16,7 @@ variables:
 cache:
   paths:
     - .cache/pip
-    - venv/
+    - env/
 
 before_script:
   - python -V               # Print out python version for debugging
