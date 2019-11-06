@@ -21,7 +21,7 @@ parser.add_argument("--copy-config", help="Copy sample config to %s" %
                     default_config + "/icons.json or the provided config directory", action="store_true")
 parser.add_argument("-u", "--update-icons",
                     help="Update icon list from FontAwesome", action="store_true")
-parser.add_argument("-h", "--hide-titles",
+parser.add_argument("-t", "--hide-titles",
                     help="Hide window titles from workspace names", action="store_true")
 args = parser.parse_args()
 
