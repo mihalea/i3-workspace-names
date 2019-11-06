@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pylint = "*"
+autopep8 = "*"
+
+[packages]
+chardet = "*"
+enum-compat = "*"
+i3ipc = "*"
+idna = "*"
+pyxdg = "*"
+requests = "*"
+urllib3 = "*"
+certifi = "*"
+
+[requires]
+python_version = "3.7"
