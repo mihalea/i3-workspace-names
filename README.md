@@ -8,9 +8,13 @@
 
 ## Install
 
-Install from `pip`
+### Install from `pip`
 
 `pip install i3-workspace-names`
+
+### Instal from `AUR`
+
+`yay -S i3-workspace-names`
 
 ## Usage
 
