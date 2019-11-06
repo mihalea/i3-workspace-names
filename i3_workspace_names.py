@@ -3,18 +3,26 @@
 import i3ipc
 import re
 import json
+import os
 from xdg.BaseDirectory import xdg_config_home, xdg_cache_home
 import argparse
 from shutil import copyfile
 import requests
 
+default_config = xdg_config_home + "/i3-workspace-names"
+
 
 parser = argparse.ArgumentParser(
     description='Dynamically change i3wm workspace names depending on windows')
-parser.add_argument("--copy-config", help="copy sample config to %s" %
-                    xdg_config_home + "/i3/icons.json", action="store_true")
+
+parser.add_argument(
+    "-c", "--config", help="Set the config directory to a custom one")
+parser.add_argument("--copy-config", help="Copy sample config to %s" %
+                    default_config + "/icons.json or the provided config directory", action="store_true")
 parser.add_argument("-u", "--update-icons",
                     help="Update icon list from FontAwesome", action="store_true")
+parser.add_argument("-h", "--hide-titles",
+                    help="Hide window titles from workspace names", action="store_true")
 args = parser.parse_args()
 
 i3 = i3ipc.Connection()
@@ -22,7 +30,7 @@ i3 = i3ipc.Connection()
 
 def get_icons():
     r = requests.get(
-        'https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/advanced-options/metadata/icons.json')
+        'https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/metadata/icons.json')
     j = json.loads(r.text)
 
     icons = {}
@@ -58,7 +66,10 @@ def rename(i3, e):
             else:
                 icon = j.window_class + ' '
 
-            windows += icon + ' ' + replace(j.name) + ' '
+            if args.hide_titles:
+                windows += icon + ' '
+            else:
+                windows += icon + ' ' + replace(j.name) + ' '
 
         i3.command('rename workspace "%s" to "%s: %s"' %
                    (i.name, i.num, windows))
@@ -70,14 +81,22 @@ def main():
     global string_replace
     global icons
 
+    config_dir = default_config
+    if args.config:
+        config_dir = args.config
+
     if args.copy_config:
         try:
-            copyfile("config.example.json", xdg_config_home + "/i3/icons.json")
+            if not os.path.isdir(config_dir):
+                os.makedirs(config_dir)
+
+            copyfile("config.example.json", config_dir + "/icons.json")
         except FileNotFoundError:
-            copyfile("/usr/share/config.example.json", xdg_config_home + "/i3/icons.json")
+            copyfile("/usr/share/config.example.json",
+                     config_dir + "/icons.json")
 
         print("Example config copied to %s" %
-              xdg_config_home + "/i3/icons.json")
+              config_dir + "/icons.json")
         return
 
     if args.update_icons:
@@ -92,7 +111,7 @@ def main():
         get_icons()
 
     try:
-        with open(xdg_config_home + "/i3/icons.json") as j:
+        with open(config_dir + "/icons.json") as j:
             settings = json.load(j)
     except IOError:
         print("Config not found. Use --copy-config to create example config.")
