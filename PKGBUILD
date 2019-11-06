@@ -5,13 +5,13 @@ _module='i3_workspace_names'
 pkgver=0.3.1
 pkgrel=1
 pkgdesc="Dynamically rename i3wm workspaces depending on windows"
-url="https://gitlab.com/mihalea/i3-workspace-names"
+url="https://github.com/mihalea/i3-workspace-names"
 depends=('python' 'python-i3ipc' 'python-enum-compat')
 makedepends=('python-setuptools')
 license=('GPL')
 arch=('any')
 provides=('i3-workspace-names')
-source=("git+https://gitlab.com/mihalea/i3-workspace-names.git")
+source=("git+https://github.com/mihalea/i3-workspace-names.git")
 md5sums=('SKIP')
 
 build() {
