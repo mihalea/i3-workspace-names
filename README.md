@@ -14,15 +14,19 @@ Install from `pip`
 
 ## Usage
 
-    usage: i3-workspace-names [-h] [--copy-config] [-u]
+    usage: i3_workspace_names.py [-h] [-c CONFIG] [--copy-config] [-u] [-t]
 
     Dynamically change i3wm workspace names depending on windows
 
     optional arguments:
-      -h, --help          show this help message and exit
-      --copy-config       copy sample config to
-                          /home/$USER/.config/i3/icons.json
-      -u, --update-icons  Update icon list from FontAwesome
+      -h, --help            show this help message and exit
+      -c CONFIG, --config CONFIG
+                            Set the config directory to a custom one
+      --copy-config         Copy sample config to
+                            /home/$USER/.config/i3-workspace-names/icons.json or
+                            the provided config directory
+      -u, --update-icons    Update icon list from FontAwesome
+      -t, --hide-titles     Hide window titles from workspace names
 
 Copy default config to home directory. Icons will be downloaded on first run.
 
