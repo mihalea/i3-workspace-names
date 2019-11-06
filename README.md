@@ -1,7 +1,5 @@
 # i3-workspace-names
 
-[![pipeline status](https://gitlab.com/flib99/i3-workspace-names/badges/master/pipeline.svg)](https://gitlab.com/flib99/i3-workspace-names/commits/master)
-
 ## About
 
 `i3-workspace-names` dynamically changes the names of workspaces depending on what windows are open in them. Names of applications and keywords are replaced with icons from FontAwesome.
