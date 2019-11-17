@@ -21,8 +21,9 @@ parser.add_argument("--copy-config", help="Copy sample config to %s" %
                     default_config + "/icons.json or the provided config directory", action="store_true")
 parser.add_argument("-u", "--update-icons",
                     help="Update icon list from FontAwesome", action="store_true")
-parser.add_argument("-t", "--hide-titles",
+parser.add_argument("-s", "--show-titles",
                     help="Hide window titles from workspace names", action="store_true")
+# parser.add_argument("")
 args = parser.parse_args()
 
 i3 = i3ipc.Connection()
@@ -62,17 +63,24 @@ def rename(i3, e):
         windows = ""
         for j in i.leaves():
             if j.window_class in apps:
-                icon = icons[apps[j.window_class]]
+                icon_name = apps[j.window_class]
+                if icon_name in icons:
+                    icon = icons[apps[j.window_class]]
+                else:
+                    icon = "N/A"
             else:
                 icon = j.window_class + ' '
 
-            if args.hide_titles:
-                windows += icon + ' '
-            else:
+            if args.show_titles:
                 windows += icon + ' ' + replace(j.name) + ' '
+            else:
+                windows += icon + ' '
 
-        i3.command('rename workspace "%s" to "%s: %s"' %
-                   (i.name, i.num, windows))
+        new_name = f"{i.num}"
+        if windows:
+            new_name += f": {windows}"
+
+        i3.command(f'rename workspace "{i.name}" to "{new_name}"')
 
 
 def main():
