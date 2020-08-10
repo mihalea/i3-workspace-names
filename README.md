@@ -21,19 +21,24 @@ yay -S i3-workspace-names
 ## Usage
 
 ```
-usage: i3-workspace-names [-h] [--copy-config] [-u]
+usage: i3_workspace_names.py [-h] [-c CONFIG] [-x CACHE] [-i ICONS] [-u] [-s] [-b]
+                             [--build-source BUILD_SOURCE]
 
 Dynamically change i3wm workspace names depending on windows
 
 optional arguments:
   -h, --help            show this help message and exit
   -c CONFIG, --config CONFIG
-                        Set the config directory to a custom one
-  --copy-config         Copy sample config to
-                        /home/$USER/.config/i3-workspace-names/icons.json or
-                        the provided config directory
+                        Use a custom config file
+  -x CACHE, --cache CACHE
+                        Cache directory for icons
+  -i ICONS, --icons ICONS
+                        Use a custom icon cache file
   -u, --update-icons    Update icon list from FontAwesome
-  -t, --hide-titles     Hide window titles from workspace names
+  -s, --show-titles     Hide window titles from workspace names
+  -b, --build-font      Build icon font from SVGs
+  --build-source BUILD_SOURCE
+                        Source directory with SVGs for font builder
 ```
 
 Copy default config to home directory. Icons will be downloaded on first run.
