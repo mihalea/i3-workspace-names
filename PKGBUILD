@@ -1,8 +1,9 @@
 # Maintainer Mircea Mihalea <mircea at mihalea dot ro>
+# Author Josh Walls <flib99>
 
 pkgname=i3-workspace-names
 _module='i3_workspace_names'
-pkgver=0.4
+pkgver=0.5
 pkgrel=1
 pkgdesc="Dynamically rename i3wm workspaces depending on windows"
 url="https://github.com/mihalea/i3-workspace-names"

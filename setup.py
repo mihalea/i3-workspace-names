@@ -7,7 +7,7 @@ with open('README.md') as f:
     long_description = f.read()
 
 setup(name='i3-workspace-names',
-      version='0.3.1',
+      version='0.5',
       description='Dynamically rename i3wm workspaces depending on windows',
       long_description=long_description,
       url='https://gitlab.com/mihalea/i3-workspace-names',
