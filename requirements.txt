@@ -7,4 +7,3 @@ python-xlib
 pyxdg
 requests
 six
-urllib3
