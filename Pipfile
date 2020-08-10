@@ -15,8 +15,7 @@ i3ipc = "*"
 idna = "*"
 pyxdg = "*"
 requests = "*"
-urllib3 = "*"
 certifi = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"
